@@ -1,0 +1,7 @@
+*.svg
+data/
+calls/
+plots/
+mapped_reads/
+sorted_reads/
+

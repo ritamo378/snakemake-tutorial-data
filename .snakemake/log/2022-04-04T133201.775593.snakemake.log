@@ -1,0 +1,3 @@
+WorkflowError:
+Workflow defines configfile config.yaml but it is not present or accessible.
+  File "/workspace/snakemake-tutorial-data/Snakefile", line 2, in <module>

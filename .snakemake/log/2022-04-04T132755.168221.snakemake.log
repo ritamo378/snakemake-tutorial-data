@@ -1,0 +1,75 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count    min threads    max threads
+--------------  -------  -------------  -------------
+all                   1              1              1
+bcftools_call         1              1              1
+plot_quals            1              1              1
+samtools_index        2              1              1
+total                 5              1              1
+
+Select jobs to execute...
+
+[Mon Apr  4 13:27:55 2022]
+rule samtools_index:
+    input: sorted_reads/B.bam
+    output: sorted_reads/B.bam.bai
+    jobid: 8
+    wildcards: sample=B
+    resources: tmpdir=/tmp
+
+[Mon Apr  4 13:27:55 2022]
+Finished job 8.
+1 of 5 steps (20%) done
+Select jobs to execute...
+
+[Mon Apr  4 13:27:55 2022]
+rule samtools_index:
+    input: sorted_reads/A.bam
+    output: sorted_reads/A.bam.bai
+    jobid: 7
+    wildcards: sample=A
+    resources: tmpdir=/tmp
+
+[Mon Apr  4 13:27:55 2022]
+Finished job 7.
+2 of 5 steps (40%) done
+Select jobs to execute...
+
+[Mon Apr  4 13:27:55 2022]
+rule bcftools_call:
+    input: data/genome.fa, sorted_reads/A.bam, sorted_reads/B.bam, sorted_reads/A.bam.bai, sorted_reads/B.bam.bai
+    output: calls/all.vcf
+    jobid: 2
+    resources: tmpdir=/tmp
+
+[Mon Apr  4 13:27:55 2022]
+Finished job 2.
+3 of 5 steps (60%) done
+Select jobs to execute...
+
+[Mon Apr  4 13:27:55 2022]
+rule plot_quals:
+    input: calls/all.vcf
+    output: plots/quals.svg
+    jobid: 1
+    resources: tmpdir=/tmp
+
+[Mon Apr  4 13:27:56 2022]
+Finished job 1.
+4 of 5 steps (80%) done
+Select jobs to execute...
+
+[Mon Apr  4 13:27:56 2022]
+localrule all:
+    input: plots/quals.svg
+    jobid: 0
+    resources: tmpdir=/tmp
+
+[Mon Apr  4 13:27:56 2022]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: /workspace/snakemake-tutorial-data/.snakemake/log/2022-04-04T132755.168221.snakemake.log
